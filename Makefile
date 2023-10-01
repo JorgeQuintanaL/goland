@@ -1,5 +1,5 @@
 build:
-	@go build -o bin/interfaces
+	@go build -C src/ -o ../bin/interfaces
 
 run: build
 	@./bin/interfaces
