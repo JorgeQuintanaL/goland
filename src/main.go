@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
+
 	// Creating a new client based on details provided
 	my_client, error := CreateClient("Jorge", "Quintana", 015123172534, "Börnestraße 6, 13086, Berlin")
 	if error != nil {
