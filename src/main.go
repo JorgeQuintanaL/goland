@@ -2,25 +2,32 @@ package main
 
 import "fmt"
 
+func readData(id *int, name *string, phone *int, address *string) {
+
+	fmt.Println("What is the client's ID:")
+	_, err := fmt.Scanln(id)
+	if err != nil {
+		fmt.Println("Error reading the input!")
+	}
+	fmt.Println("What is the client's name:")
+	_, err = fmt.Scanln(name)
+	fmt.Println("What is the client's phone:")
+	_, err = fmt.Scanln(phone)
+	fmt.Println("What is the client's address:")
+	_, err = fmt.Scanln(address)
+}
+
 func main() {
 
-	// Creating a new client based on details provided
-	my_client, error := CreateClient("Jorge", "Quintana", 015123172534, "Börnestraße 6, 13086, Berlin")
-	if error != nil {
-		fmt.Println("Error creating the new user!")
-	}
-	my_client.PrintClient()
+	var id, phone int
+	var name, address string
+	var myNewEntity personEntity
 
-	// Creating Current Account for new client
-	my_current_account, error := CreateAccount(my_client)
-	if error != nil {
-		fmt.Println("Error creating Current Account for the new user!")
-	}
-	my_current_account.GetAccountDetails()
-	my_current_account.AddBalance(100)
+	readData(&id, &name, &phone, &address)
+	populateEntity(&myNewEntity, id, name, phone, address)
 
-	//New Account Details after topping up
-	fmt.Println("Topping up the Current Account...")
-	fmt.Printf("New Balance: %d", my_current_account.GetBalance())
-	fmt.Println()
+	//Printing the new user details
+	fmt.Println("The client was successfully created and the details are the following:")
+	clientDetails := getEntityDetails(&myNewEntity)
+	fmt.Println(clientDetails)
 }
